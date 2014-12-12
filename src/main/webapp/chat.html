@@ -1,0 +1,139 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <title>TRadar Chat Test Console</title>
+    <style>
+        textarea { display: block; }
+    </style>
+    <script>
+        onerror = function (msg) {
+            log(msg);
+        }
+        function log(msg) {
+            var parent = document.getElementById('log');
+            var newChild = document.createTextNode(new Date() + '   ' + msg + '\n');
+            parent.insertBefore(newChild, parent.firstChild);
+        }
+        function status(msg) {
+            log(msg);
+            document.getElementById('status').textContent = msg;
+        }
+        function insertURL() {
+            document.getElementById('url').value = 'ws://' + window.location.hostname + ':' + window.location.port + '/chat/chat';
+        }
+    </script>
+    <script>
+        var id = 0;
+        var socket;
+        var currentSessionId;
+        function connect() {
+            var url = document.getElementById('url').value;
+            currentSessionId = document.getElementById('sessionId').value;
+            url += "?sessionId=" + currentSessionId;
+            socket = new WebSocket(url);
+            status('Connecting to "' + url + '"...');
+            socket.onopen = function (event) {
+                status('Connected to "' + socket.url + '".');
+            };
+            socket.onmessage = function (event) {
+                log('RCVD: ' + event.data);
+            };
+            socket.onclose = function (event) {
+                status('Disconnected.');
+            };
+            socket.onerror = function(event) {
+                status('Error occured.');
+                socket.close();
+            };
+        }
+        function disconnect() {
+            if (socket) {
+                status('Disconnecting.');
+                socket.close();
+            } else {
+                log('Not connected.');
+            }
+        }
+        function send() {
+            if (socket) {
+                var message = {
+                    uuid: 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function(c) {
+                        var r = Math.random()*16|0, v = c == 'x' ? r : (r&0x3|0x8);
+                        return v.toString(16);
+                    }),
+                    id: id++,
+                    message: document.getElementById('msg').value,
+                    fromUserId: currentSessionId,
+                    toUserId: document.getElementById('to').value,
+                    datetime: Date.now()
+                };
+                var packet = JSON.stringify({ messageTypeId:'message', messageBody: message });
+                socket.send(packet);
+                log('SENT: ' + packet);
+            } else {
+                log('Not connected.');
+            }
+        }
+        function getHistory() {
+            if (socket) {
+                var message = {
+                    userId: document.getElementById('historyId').value,
+                    idFrom: -1,
+                    amount: -1,
+                    direction: 'after'
+                };
+                var packet = JSON.stringify({ messageTypeId:'history_req', messageBody: message });
+                socket.send(packet);
+                log('SENT: ' + packet);
+            } else {
+                log('Not connected.');
+            }
+        }
+        function getConversations() {
+            if (socket) {
+                var message = {
+                };
+                var packet = JSON.stringify({ messageTypeId:'conv_list_req', messageBody: message });
+                socket.send(packet);
+                log('SENT: ' + packet);
+            } else {
+                log('Not connected.');
+            }
+        }
+        function update() {
+            if (socket) {
+                document.getElementById('readyState').textContent = socket.readyState;
+                document.getElementById('bufferedAmount').textContent = socket.bufferedAmount;
+            } else {
+                document.getElementById('readyState').textContent = '-';
+                document.getElementById('bufferedAmount').textContent = '-';
+            }
+        }
+        setInterval(update, 10);
+    </script>
+</head>
+<body onload="insertURL()">
+<p>Status: <span id="readyState">-</span> <span id="status">Idle</span></p>
+<p>Buffer: <span id="bufferedAmount">-</span> bytes</p>
+<p>
+    <label>WebSocket URL: <input id="url" type="url" size="80" value=""></label>
+    <label>Session id: <input id="sessionId" type="text" cols="20" value=""></label>
+    <input type=button value="Connect" onclick="connect()">
+    <input type=button value="Disconnect" onclick="disconnect()">
+</p>
+<p>
+    <label>To: <textarea id="to" type="text" rows="1" cols="80"></textarea></label>
+    <label>Message: <textarea id="msg" type="text" rows="1" cols="80"></textarea></label>
+    <input type=button value="Send message" onclick="send()">
+</p>
+<p>
+    <label>History of: <textarea id="historyId" type="text" rows="1" cols="80"></textarea></label>
+    <input type=button value="Get history" onclick="getHistory()">
+</p>
+<p>
+    <input type=button value="Get Conversations" onclick="getConversations()">
+</p>
+  <pre id="log">Log:
+</pre>
+</body>
+</html>

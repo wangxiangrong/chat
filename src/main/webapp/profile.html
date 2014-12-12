@@ -1,0 +1,116 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <title>TRadar Profile Test Console</title>
+    <style>
+        textarea { display: block; }
+    </style>
+    <script>
+        onerror = function (msg) {
+            log(msg);
+        };
+        function log(msg) {
+            var parent = document.getElementById('log');
+            var newChild = document.createTextNode(new Date() + '   ' + msg + '\n');
+            parent.insertBefore(newChild, parent.firstChild);
+        }
+        function status(msg) {
+            log(msg);
+            document.getElementById('status').textContent = msg;
+        }
+        function insertURL() {
+            document.getElementById('url').value = 'ws://' + window.location.hostname + ':' + window.location.port + '/chat/profile';
+        }
+
+    </script>
+    <script>
+        var socket;
+        var currentSessionId;
+        function connect() {
+            var url = document.getElementById('url').value;
+            currentSessionId = document.getElementById('sessionId').value;
+            url += "?sessionId=" + currentSessionId;
+            socket = new WebSocket(url);
+            status('Connecting to "' + url + '"...');
+            socket.onopen = function (event) {
+                status('Connected to "' + socket.url + '".');
+            };
+            socket.onmessage = function (event) {
+                log('RCVD: ' + event.data);
+            };
+            socket.onclose = function (event) {
+                status('Disconnected.');
+            };
+        }
+        function disconnect() {
+            if (socket) {
+                status('Disconnecting.');
+                socket.close();
+            } else {
+                log('Not connected.');
+            }
+        }
+        function getProfiles() {
+            if (socket) {
+                var message = {
+                    req_id: 'request_id',
+                    profile_ids: JSON.parse('[' + document.getElementById('profileIds').value + ']')
+                };
+                var packet = JSON.stringify({ messageTypeId:'profile_list_req', messageBody: message });
+                socket.send(packet);
+                log('SENT: ' + packet);
+            } else {
+                log('Not connected.');
+            }
+        }
+        function updateProfile() {
+            if (socket) {
+                var message = {
+                    id: document.getElementById('userId').value,
+                    name: document.getElementById('name').value,
+                    contacts: parseInt(document.getElementById('contacts').value),
+                    exp: document.getElementById('experience').value,
+                    tags: JSON.parse('[' + document.getElementById('tags').value + ']'),
+                    img: document.getElementById('img').value
+                };
+                var packet = JSON.stringify({ messageTypeId:'update', messageBody: message });
+                socket.send(packet);
+                log('SENT: ' + packet);
+            } else {
+                log('Not connected.');
+            }
+        }
+        setInterval(update, 10);
+
+    </script>
+</head>
+<body onload="insertURL()">
+<p>Status: <span id="readyState">-</span> <span id="status">Idle</span></p>
+
+<p>Buffer: <span id="bufferedAmount">-</span> bytes</p>
+
+<p>
+    <label>WebSocket URL: <input id="url" type="url" size="80" value=""></label>
+    <label>Session id: <input id="sessionId" type="text" cols="20" value=""></label>
+    <input type=button value="Connect" onclick="connect()">
+    <input type=button value="Disconnect" onclick="disconnect()">
+</p>
+
+<p>
+    <label>Profile Ids: <textarea id="profileIds" type="text" rows="1" cols="80"></textarea></label>
+    <input type=button value="Get User's information" onclick="getProfiles()">
+</p>
+
+<p>
+    <label>Id: <textarea id="userId" type="text" rows="1" cols="80"></textarea></label>
+    <label>Name: <textarea id="name" type="text" rows="1" cols="80"></textarea></label>
+    <label>Contacts: <textarea id="contacts" type="text" rows="1" cols="80"></textarea></label>
+    <label>Exprience: <textarea id="experience" type="text" rows="1" cols="80"></textarea></label>
+    <label>Tags: <textarea id="tags" type="text" rows="1" cols="80"></textarea></label>
+    <label>Image: <textarea id="img" type="text" rows="1" cols="80"></textarea></label>
+    <input type=button value="Update user profile" onclick="updateProfile()">
+</p>
+  <pre id="log">Log:
+</pre>
+</body>
+</html>
