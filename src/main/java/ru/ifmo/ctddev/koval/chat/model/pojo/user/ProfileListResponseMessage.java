@@ -3,6 +3,7 @@ package ru.ifmo.ctddev.koval.chat.model.pojo.user;
 import ru.ifmo.ctddev.koval.chat.model.visitor.profile.ProfileMessageVisitor;
 
 import javax.annotation.Nonnull;
+import javax.annotation.concurrent.Immutable;
 import javax.json.Json;
 import javax.json.JsonArray;
 import javax.json.JsonArrayBuilder;
@@ -10,7 +11,8 @@ import javax.json.JsonObject;
 import java.util.ArrayList;
 import java.util.Collection;
 
-public class ProfileListResponseMessage extends ProfileMessage {
+@Immutable
+public final class ProfileListResponseMessage extends ProfileMessage {
     public static final @Nonnull String ID = "profile_list_resp";
 
     private static final @Nonnull String REQUEST_ID = "req_id";

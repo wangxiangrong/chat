@@ -14,7 +14,7 @@ import javax.websocket.Decoder;
 import javax.websocket.EndpointConfig;
 import java.io.StringReader;
 
-public class ChatMessageDecoder implements Decoder.Text<ChatMessage> {
+public final class ChatMessageDecoder implements Decoder.Text<ChatMessage> {
 
     private @Nullable ChatMessage decodedMessage;
 
@@ -58,7 +58,6 @@ public class ChatMessageDecoder implements Decoder.Text<ChatMessage> {
                 decodedMessage = null;
                 break;
         }
-
 
         return decodedMessage != null;
     }

@@ -6,7 +6,7 @@ import javax.inject.Named;
 import java.util.concurrent.ConcurrentHashMap;
 
 @Named
-public class SessionManager {
+public final class SessionManager {
 
     private static final @Nonnull ConcurrentHashMap<String, String> tokenMap = new ConcurrentHashMap<>();
 

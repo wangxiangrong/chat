@@ -3,11 +3,13 @@ package ru.ifmo.ctddev.koval.chat.model.pojo.chat;
 import ru.ifmo.ctddev.koval.chat.model.visitor.chat.ChatMessageVisitor;
 
 import javax.annotation.Nonnull;
+import javax.annotation.concurrent.Immutable;
 import javax.json.Json;
 import javax.json.JsonObject;
 import java.util.Comparator;
 
-public class ConversationItemMessage extends ChatMessage {
+@Immutable
+public final class ConversationItemMessage extends ChatMessage {
     public static final String ID = "message";
 
     @Nonnull

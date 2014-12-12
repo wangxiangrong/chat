@@ -5,7 +5,7 @@ import ru.ifmo.ctddev.koval.chat.model.visitor.chat.ChatMessageVisitor;
 import javax.annotation.Nonnull;
 import javax.json.JsonObject;
 
-public class HistoryRequestMessage extends ChatMessage {
+public final class HistoryRequestMessage extends ChatMessage {
     public enum Direction {
         AFTER("after"),
         BEFORE("before");

@@ -1,9 +1,11 @@
 package ru.ifmo.ctddev.koval.chat.model.pojo.chat;
 
 import javax.annotation.Nonnull;
+import javax.annotation.concurrent.Immutable;
 import java.util.Comparator;
 
-public class Conversation {
+@Immutable
+public final class Conversation {
     public static class ProxyComparator implements Comparator<Conversation> {
         private final @Nonnull Comparator<ConversationItemMessage> comparator;
 

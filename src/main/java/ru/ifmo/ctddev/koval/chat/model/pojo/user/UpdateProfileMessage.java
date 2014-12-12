@@ -5,7 +5,7 @@ import ru.ifmo.ctddev.koval.chat.model.visitor.profile.ProfileMessageVisitor;
 import javax.annotation.Nonnull;
 import javax.json.JsonObject;
 
-public class UpdateProfileMessage extends ProfileMessage {
+public final class UpdateProfileMessage extends ProfileMessage {
     public static final @Nonnull String ID = "update";
 
     private final @Nonnull User user;

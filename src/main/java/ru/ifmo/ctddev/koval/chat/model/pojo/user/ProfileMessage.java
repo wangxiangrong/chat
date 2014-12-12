@@ -8,6 +8,7 @@ import javax.annotation.Nonnull;
 import javax.json.JsonObject;
 
 public abstract class ProfileMessage extends AbstractMessage implements Visitable<ProfileMessage, ProfileMessageVisitor> {
+
     public ProfileMessage(@Nonnull JsonObject object) {
     }
 

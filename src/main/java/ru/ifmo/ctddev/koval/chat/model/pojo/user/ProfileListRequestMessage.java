@@ -3,12 +3,14 @@ package ru.ifmo.ctddev.koval.chat.model.pojo.user;
 import ru.ifmo.ctddev.koval.chat.model.visitor.profile.ProfileMessageVisitor;
 
 import javax.annotation.Nonnull;
+import javax.annotation.concurrent.Immutable;
 import javax.json.Json;
 import javax.json.JsonArray;
 import javax.json.JsonArrayBuilder;
 import javax.json.JsonObject;
 
-public class ProfileListRequestMessage extends ProfileMessage {
+@Immutable
+public final class ProfileListRequestMessage extends ProfileMessage {
     public static final @Nonnull String ID = "profile_list_req";
 
     private static final @Nonnull String REQUEST_ID = "req_id";

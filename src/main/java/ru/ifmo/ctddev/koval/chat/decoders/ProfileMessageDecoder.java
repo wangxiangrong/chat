@@ -17,7 +17,7 @@ import javax.websocket.Decoder;
 import javax.websocket.EndpointConfig;
 import java.io.StringReader;
 
-public class ProfileMessageDecoder implements Decoder.Text<ProfileMessage> {
+public final class ProfileMessageDecoder implements Decoder.Text<ProfileMessage> {
     private @Nullable ProfileMessage decodedMessage;
 
     @Override

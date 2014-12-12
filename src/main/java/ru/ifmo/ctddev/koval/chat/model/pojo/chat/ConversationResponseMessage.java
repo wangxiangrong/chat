@@ -11,7 +11,7 @@ import java.util.Collection;
 import java.util.Collections;
 import java.util.TreeSet;
 
-public class ConversationResponseMessage extends ChatMessage {
+public final class ConversationResponseMessage extends ChatMessage {
     public enum ConversationType {
         INCOMING("i"), OUTGOING("o"), BOTH("b");
 

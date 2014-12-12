@@ -9,7 +9,7 @@ import javax.websocket.EncodeException;
 import javax.websocket.Encoder;
 import javax.websocket.EndpointConfig;
 
-public class ChatMessageEncoder implements Encoder.Text<ChatMessage> {
+public final class ChatMessageEncoder implements Encoder.Text<ChatMessage> {
     @Override
     public String encode(@Nonnull ChatMessage chatMessage) throws EncodeException {
         return Json.createObjectBuilder().add(AbstractMessage.MESSAGE_TYPE_ID, chatMessage.getMessageTypeId()).

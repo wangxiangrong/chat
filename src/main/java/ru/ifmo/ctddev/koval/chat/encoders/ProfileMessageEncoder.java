@@ -9,7 +9,7 @@ import javax.websocket.EncodeException;
 import javax.websocket.Encoder;
 import javax.websocket.EndpointConfig;
 
-public class ProfileMessageEncoder implements Encoder.Text<ProfileMessage> {
+public final class ProfileMessageEncoder implements Encoder.Text<ProfileMessage> {
     @Override
     public String encode(@Nonnull ProfileMessage profileMessage) throws EncodeException {
         return Json.createObjectBuilder().

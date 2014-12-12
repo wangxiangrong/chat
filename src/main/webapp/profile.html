@@ -68,10 +68,6 @@
                 var message = {
                     id: document.getElementById('userId').value,
                     name: document.getElementById('name').value,
-                    contacts: parseInt(document.getElementById('contacts').value),
-                    exp: document.getElementById('experience').value,
-                    tags: JSON.parse('[' + document.getElementById('tags').value + ']'),
-                    img: document.getElementById('img').value
                 };
                 var packet = JSON.stringify({ messageTypeId:'update', messageBody: message });
                 socket.send(packet);

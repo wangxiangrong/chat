@@ -3,9 +3,11 @@ package ru.ifmo.ctddev.koval.chat.model.pojo.chat;
 import ru.ifmo.ctddev.koval.chat.model.visitor.chat.ChatMessageVisitor;
 
 import javax.annotation.Nonnull;
+import javax.annotation.concurrent.Immutable;
 import javax.json.JsonObject;
 
-public class ConversationRequestMessage extends ChatMessage {
+@Immutable
+public final class ConversationRequestMessage extends ChatMessage {
     public static final @Nonnull String ID = "conv_list_req";
 
     @Nonnull

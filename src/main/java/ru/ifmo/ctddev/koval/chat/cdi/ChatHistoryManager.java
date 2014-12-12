@@ -16,7 +16,7 @@ import java.util.concurrent.ConcurrentSkipListSet;
 import java.util.concurrent.atomic.AtomicLong;
 
 @Named
-public class ChatHistoryManager {
+public final class ChatHistoryManager {
 
     private final @Nonnull ConcurrentHashMap<UserPair, ConcurrentSkipListSet<ConversationItemMessage>> conversations = new ConcurrentHashMap<>();
     private final @Nonnull AtomicLong id = new AtomicLong(0);

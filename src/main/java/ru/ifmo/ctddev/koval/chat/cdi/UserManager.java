@@ -11,8 +11,9 @@ import java.util.List;
 import java.util.Random;
 import java.util.concurrent.ConcurrentHashMap;
 
+//TODO
 @Named
-public class UserManager {
+public final class UserManager {
 
     private static final @Nonnull ConcurrentHashMap<String, User> users = new ConcurrentHashMap<>();
     private final @Nonnull Random random = new Random();
@@ -21,29 +22,13 @@ public class UserManager {
             "Rick", "Brett", "Kelly", "Linette", "Lamont",
             "Lily", "Rachell", "Elisa", "Tonia", "Kareem"
     };
-    private static final @Nonnull String[] images = {
-            "https://33.media.tumblr.com/avatar_8d2647394efe_128.png",
-            "http://38.media.tumblr.com/avatar_14ee6ada72a4_128.png",
-            "http://www.little-dene.co.uk/grey%20tabby%20cat%20portrait.JPG",
-            "https://31.media.tumblr.com/avatar_e8973c10573a_128.png"
-    };
-    private static final @Nonnull String[] levels = {"n", "m", "v"};
-    private static final @Nonnull String[] tags = {"AAPL", "GOOG", "MSFT", "YHOO", "IBM", "MSFT", "FB", "LOL"};
 
     @Nullable
     public User getUserById(@Nonnull String id) {
         if (!users.containsKey(id)) {
-            final String[] tagsArray = new String[random.nextInt(3)];
-            for (int i = 0; i < tagsArray.length; i++) {
-                tagsArray[i] = tags[random.nextInt(tags.length)];
-            }
             final User user = new User(
                     id,
-                    random.nextInt(10),
-                    names[random.nextInt(names.length)],
-                    levels[random.nextInt(levels.length)],
-                    tagsArray,
-                    images[random.nextInt(images.length)]
+                    names[random.nextInt(names.length)]
             );
             users.putIfAbsent(id, user);
         }

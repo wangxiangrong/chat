@@ -3,6 +3,7 @@ package ru.ifmo.ctddev.koval.chat.model.pojo.chat;
 import ru.ifmo.ctddev.koval.chat.model.visitor.chat.ChatMessageVisitor;
 
 import javax.annotation.Nonnull;
+import javax.annotation.concurrent.Immutable;
 import javax.json.Json;
 import javax.json.JsonArray;
 import javax.json.JsonArrayBuilder;
@@ -11,7 +12,8 @@ import java.util.Collection;
 import java.util.Collections;
 import java.util.TreeSet;
 
-public class HistoryResponseMessage extends ChatMessage {
+@Immutable
+public final class HistoryResponseMessage extends ChatMessage {
     public static final @Nonnull String ID = "history_resp";
 
     @Nonnull
