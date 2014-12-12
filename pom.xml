@@ -26,12 +26,6 @@
         <junit.version>4.11</junit.version>
         <eclipselink.version>2.5.0</eclipselink.version>
         <cargo.plugin.version>1.4.4</cargo.plugin.version>
-
-        <!-- TODO re-enable when we have auto-deploy to dev server feature
-        <glassfish.domain.name>domain1</glassfish.domain.name>
-        <glassfish.home>${glassfish.home.prefix}/glassfish4</glassfish.home>
-        <integration.container.id>glassfish4x</integration.container.id>
-        -->
     </properties>
 
     <repositories>
@@ -83,37 +77,7 @@
             </plugins>
         </pluginManagement>
         <plugins>
-            <!-- TODO re-enable when we'll have auto-deploy to dev server feature
-            <plugin>
-                <groupId>org.codehaus.cargo</groupId>
-                <artifactId>cargo-maven2-plugin</artifactId>
-                <inherited>true</inherited>
-                <executions>
-                    <execution>
-                        <id>deploy</id>
-                        <phase>integration-test</phase>
-                        <goals>
-                            <goal>redeploy</goal>
-                        </goals>
-                    </execution>
-                </executions>
-                <configuration>
-                    <container>
-                        <containerId>${integration.container.id}</containerId>
-                        <type>installed</type>
-                        <home>${glassfish.home}</home>
-                    </container>
-                    <configuration>
-                        <type>existing</type>
-                        <home>${glassfish.home}/glassfish/domains</home>
-                        <properties>
-                            <cargo.glassfish.domain.name>${glassfish.domain.name}</cargo.glassfish.domain.name>
-                            &lt;!&ndash;cargo.remote.username></cargo.remote.username&ndash;&gt;
-                            <cargo.remote.password />
-                        </properties>
-                    </configuration>
-                </configuration>
-            </plugin>-->
+
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
@@ -155,7 +119,6 @@
             <artifactId>hibernate-entitymanager</artifactId>
             <version>${hibernate.entitymanager.version}</version>
         </dependency>
-        <!--Logging-->
         <dependency>
             <groupId>org.slf4j</groupId>
             <artifactId>jul-to-slf4j</artifactId>

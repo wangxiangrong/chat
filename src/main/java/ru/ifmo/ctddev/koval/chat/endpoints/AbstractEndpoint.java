@@ -63,11 +63,9 @@ public abstract class AbstractEndpoint {
         HandshakeRequest req = (HandshakeRequest) config.getUserProperties().get(DefaultEndpointConfigurator.HANDSHAKE_REQUEST_KEY);
         List<String> sessionIdHeader = req.getHeaders().get(SESSION_ID_NAME);
 
-        //TODO remove in [TMC-71]
         if (sessionIdHeader == null) {
             sessionIdHeader = session.getRequestParameterMap().get(SESSION_ID_NAME);
         }
-        //TODO remove in [TMC-71]
 
         if (sessionIdHeader == null || sessionIdHeader.size() != 1) {
             throw new IllegalArgumentException("Session id should be contains exactly one time");
