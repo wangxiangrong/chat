@@ -1,0 +1,144 @@
+.workPlace{
+    display: block;
+    width: 70%;
+    height: 85%;
+    position: absolute;
+    overflow: auto;
+    margin: 5px auto;
+    left: 0; right: 0;
+    border: 1px solid grey;
+    box-sizing: border-box;
+    background: rgb(218, 256, 256);
+    padding: 1%;
+    border-radius: 1%;
+}
+
+.dialogsList{
+    width: 23%;
+    height: 100%;
+    float: left;
+    border-right: 1px solid rgba(0, 100, 180, 0.7);
+    box-sizing: border-box;
+    padding-right: 2%;
+}
+
+.dialog{
+    width: 73%;
+    height: 97%;
+    float: right;
+    padding: 0% 1%;
+}
+
+.dialogHeader{
+    width: 98%;
+    height: 5%;
+    position: relative;
+    background: rgb(200, 220, 256);
+    border-radius: 7px;
+    padding: 1%;
+    margin-bottom: 1%;
+}
+
+.dialogShow{
+    width: 98%;
+    height: 75%;
+    overflow-y: scroll;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 1%;
+}
+
+.dialogOptions{
+    width: 98%;
+    height: 16%;
+    position: relative;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+#message{
+    width: 98%;
+    position: absolute;
+    top: 1%; bottom: 30%;
+    resize: none;
+    box-sizing: border-box;
+    margin: 1%;
+    border: 1px solid rgba(0, 100, 180, 0.7);
+    border-radius: 5px;
+}
+
+#sendMessage{
+    width: 30%;
+    height: 40%;
+    display: block;
+    position: absolute;
+    margin: 0 auto;
+    left: 0; right: 0; top: 70%;
+}
+
+.interlocutor {
+    float: left;
+    font-weight: 700;
+    font-style: italic;
+    vertical-align: middle;
+    width: 60%;
+    height: 97%;
+    overflow: hidden;
+    white-space: nowrap;
+    font-size: 1.5em;
+}
+
+.historyButton {
+    display: block;
+    position: absolute;
+    width: 20%;
+    top: 0%; bottom: 0%; right: 0%;
+}
+
+
+.incomingMessageText {
+    white-space: pre-line;
+    float: left;
+    clear: both;
+    margin: 2%;
+    text-align: left;
+    padding: 5px 10px;
+    background: rgb(180, 256, 150);
+    border-radius: 10px;
+    border-bottom-left-radius: 0;
+}
+
+.outgoingMessageText {
+    white-space: pre-line;
+    float: right;
+    clear: both;
+    max-width: 60%;
+    margin: 2%;
+    text-align: right;
+    padding: 5px 10px;
+    background: rgba(0, 100, 200, 0.5);
+    border-radius: 10px;
+    border-bottom-right-radius: 0;
+}
+
+.messageText {
+    display: block;
+    width: 100%;
+}
+
+.interlocutorElement {
+    display: block;
+    border-bottom: 1px solid black;
+    cursor: pointer;
+}
+
+.interlocutorName {
+    overflow-x: hidden;
+    font-size: 1.1em;
+    font-weight: 700;
+}
+
+.mesText {
+    overflow-x: hidden;
+    padding: 1% 5%;
+}

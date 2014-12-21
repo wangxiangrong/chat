@@ -1,0 +1,53 @@
+
+.loginForm {
+    width: 200px;
+    height: 180px;
+    overflow: auto;
+    position: absolute;
+    margin: auto;
+    top: 0; bottom: 0; left: 0; right: 0;
+    border: 2px solid rgb(0, 120, 200);
+    background: #ffffff;
+    padding: 0 5%;
+    border-radius: 20px;
+}
+
+#signInHeader {
+    width: 20%;
+    margin: 10px auto 5px;
+    position: relative;
+    left: -10%;
+    font-size: 2.3em;
+}
+
+.box1 {
+    margin: 5px auto;
+}
+
+#loginLabel {
+    display: block;
+    width: 100%;
+    text-align: center;
+    font-size: 1.3em;
+}
+
+#loginField {
+    display: block;
+    width: 200px;
+    margin: 5px auto;
+    border: 1px solid rgb(0, 120, 200);
+    border-radius: 3px;
+    box-sizing: border-box;
+}
+
+#signIn {
+    user-select: none;
+    padding: 0px 1px;
+    outline: none;
+    display: block;
+    width: 200px;
+    height: 30px;
+    margin: 15px auto 0px;
+}
+
+

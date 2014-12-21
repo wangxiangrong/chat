@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <script src="forStartPage.js"></script>
+    <script src="forDialogPage.js"></script>
+    <script src="submit.js"></script>
+    <link rel="stylesheet" type="text/css" href="signInStyles.css">
+    <link rel="stylesheet" type="text/css" href="dialogs.css">
+    <link rel="stylesheet" type="text/css" href="generalStyles.css">
+    <title></title>
+</head>
+<body class="body">
+<script type="text/template" id="template">
+    <div class="header">
+        <div class="iconContainer">
+            <div class="icon"></div>
+            <div class="appName">Chat</div>
+        </div>
+    </div>
+    <form class="loginForm" id="startForm">
+        <div id="signInHeader">Вход</div>
+        <div class="box1">
+            <label for="loginField" id="loginLabel">Введите логин:</label>
+            <input type="text" class="login" id="loginField">
+        </div>
+        <button type="button" id="signIn" onclick="toAdminPage()">SIGN IN</button>
+    </form>
+</script>
+<script type="text/javascript">showStartPage()</script>
+
+</body>
+</html>
