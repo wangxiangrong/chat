@@ -67,7 +67,7 @@
             if (socket) {
                 var message = {
                     id: document.getElementById('userId').value,
-                    name: document.getElementById('name').value,
+                    name: document.getElementById('name').value
                 };
                 var packet = JSON.stringify({ messageTypeId:'update', messageBody: message });
                 socket.send(packet);
@@ -76,7 +76,6 @@
                 log('Not connected.');
             }
         }
-        setInterval(update, 10);
 
     </script>
 </head>

@@ -8,9 +8,8 @@
     left: 0; right: 0;
     border: 1px solid grey;
     box-sizing: border-box;
-    background: rgb(218, 256, 256);
+    background: #ffffff;
     padding: 1%;
-    border-radius: 1%;
 }
 
 .dialogsList{
